@@ -5,9 +5,9 @@ const es = require("event-stream");
 
 exports.default = function() {
   return es.merge(
-    src("src/*.js")
+    src("src/x.js")
       .pipe(uglify())
       .pipe(rename({ extname: ".min.js" })),
-    src("src/*.js")
+    src("src/x.js")
   ).pipe(dest("dist/"));
 }
