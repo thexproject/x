@@ -50,20 +50,34 @@
       }
     }
 
-    append(html) {
-      let template = document.createElement("template");
-      template.innerHTML = html.trim();
-      let newNode = template.content.firstChild;
+    append(query) {
+      let node;
+      if (query instanceof Node) {
+        node = query;
+      } else if (query instanceof xObject) {
+        node = query.node;
+      } else {
+        let template = document.createElement("template");
+        template.innerHTML = query.trim();
+        node = template.content.firstChild;
+      }
 
-      this.node.appendChild(newNode);
+      this.node.appendChild(node);
       return this;
     }
-    prepend(html) {
-      let template = document.createElement("template");
-      template.innerHTML = html.trim();
-      let newNode = template.content.firstChild;
+    prepend(query) {
+      let node;
+      if (query instanceof Node) {
+        node = query;
+      } else if (query instanceof xObject) {
+        node = query.node;
+      } else {
+        let template = document.createElement("template");
+        template.innerHTML = query.trim();
+        node = template.content.firstChild;
+      }
 
-      this.node.insertBefore(newNode, this.node.firstChild);
+      this.node.insertBefore(node, this.node.firstChild);
       return this;
     }
 
@@ -98,27 +112,8 @@
       }
     }
 
-    style(styles) {
-      this
-        .append("<style>")
-        .append(styles.trim().replace(/\n/g, " "))
-        .append("</style>");
-      return this;
-    }
-    style(code) {
-      this
-        .append("<script>")
-        .append(code.trim())
-        .append("</script>");
-      return this;
-    }
-
     destroy() {
       this.node.parentNode.removeChild(this.node);
-    }
-
-    data(name) {
-      return this.node.dataset[name];
     }
 
     click(handler, that) {
@@ -148,7 +143,7 @@
     html = x("<textarea>").html(html).value();
   
     let templateRegex = /<<([^>>]+)?>>/g;
-    let blockRegex = /(^( )?(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
+    let blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
       
     let code = "var list = [];\n";
     let index = 0;
