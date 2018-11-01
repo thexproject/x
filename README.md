@@ -1,2 +1,2 @@
 # x
-A simple DOM manipulation library that comes with 
+A simple DOM manipulation library that comes with a templating library and an easy-to-use AJAX function.
