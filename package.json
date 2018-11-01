@@ -1,0 +1,33 @@
+{
+  "name": "x",
+  "version": "1.0.0",
+  "description": "A simple DOM manipulation library that comes with a templating engine and an easy-to-use AJAX function.",
+  "main": "x.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thexproject/x.git"
+  },
+  "keywords": [
+    "javascript",
+    "dom",
+    "library",
+    "templating",
+    "ajax"
+  ],
+  "author": "The X Project",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/thexproject/x/issues"
+  },
+  "homepage": "https://github.com/thexproject/x#readme",
+  "devDependencies": {
+    "event-stream": "^4.0.1",
+    "gulp": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify-es": "^1.0.4",
+    "jest": "^23.6.0"
+  }
+}
