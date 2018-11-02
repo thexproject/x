@@ -17,8 +17,8 @@ jobs:
       - run: npm test
       - run: npm run build
       - store_artifacts:
-          path: /dist/x.min.js
+          path: dist/x.min.js
           destination: x.min.js
       - store_artifacts:
-          path: /dist/x.js
+          path: dist/x.js
           destination: x.js
