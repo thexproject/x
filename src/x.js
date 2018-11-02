@@ -63,7 +63,7 @@
       }
 
       this.node.appendChild(node);
-      return this;
+      return new xObject(node);
     }
     prepend(query) {
       let node;
@@ -78,7 +78,7 @@
       }
 
       this.node.insertBefore(node, this.node.firstChild);
-      return this;
+      return new xObject(node);
     }
 
     appendTo(query) {
