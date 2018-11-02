@@ -165,8 +165,6 @@
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-
-    console.log("code is", code);
     
     x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
