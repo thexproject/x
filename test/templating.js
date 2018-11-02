@@ -35,3 +35,16 @@ test("can define and get variables", () => {
   xAct("body");
   expect(x("body").html()).toEqual("thingymabobber");
 });
+
+test("can get daat set in model", () => {
+  require("../src/x");
+
+  x("body").html(`
+    << this.thing >>
+    << this.thing >>
+  `);
+  xAct("body", {
+    "thing": "thingymabobber"
+  });
+  expect(x("body").html()).toEqual("thingymabobberthingymabobber");
+});
