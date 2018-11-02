@@ -138,7 +138,7 @@
 
   // xAct - Simple JavaScript templating library
   
-  window.xAct = element => {
+  window.xAct = (element, data) => {
     let html = x(element).html();
     html = x("<textarea>").html(html).value();
   
@@ -168,7 +168,7 @@
 
     console.log("code", code);
     
-    x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply());
+    x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 
   // xJax - A wrapper around fetch to make it simpler
