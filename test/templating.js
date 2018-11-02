@@ -13,7 +13,7 @@ test("if statements work", () => {
   expect(x("body").html()).toEqual("Hello world!");
 });
 
-test("fot statements work", () => {
+test("for statements work", () => {
   require("../src/x");
 
   x("body").html(`
