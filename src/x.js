@@ -152,7 +152,7 @@
     const append = (line, isJS) => {
       line = line.trim();
       if (isJS) {
-        code += line.match(blockRegex) ? line + "\n" : "list.push(" + line + ");\n";
+        code += line.match(blockRegex) ? (line.endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
       } else {
         code += line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n";
       }
@@ -166,7 +166,7 @@
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
 
-    console.log("code", code);
+    console.log("code is", code);
     
     x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
