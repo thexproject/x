@@ -36,7 +36,7 @@ test("can define and get variables", () => {
   expect(x("body").html()).toEqual("thingymabobber");
 });
 
-test("can get daat set in model", () => {
+test("can get data set in model", () => {
   require("../src/x");
 
   x("body").html(`
