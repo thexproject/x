@@ -36,6 +36,19 @@ test("can define and get variables", () => {
   expect(x("body").html()).toEqual("thingymabobber");
 });
 
+test("can set existing variables", () => {
+  require("../src/x");
+
+  x("body").html(`
+    << let thing = "thingymabobber" >>
+    << thing >>
+    << thing = "newvalue" >>
+    << thing >>
+  `);
+  xAct("body");
+  expect(x("body").html()).toEqual("thingymabobbernewvalue");
+});
+
 test("can get data set in model", () => {
   require("../src/x");
 
