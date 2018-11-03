@@ -7,3 +7,17 @@ test_task:
     fingerprint_script: cat package-lock.json
     populate_script: npm install
   test_script: yarn run test
+  
+publish_task:
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat package-lock.json
+    populate_script: npm install
+  only_if: $CIRRUS_BRANCH == "master"
+  depends_on:
+    - test
+  env:
+    NOW_TOKEN: ENCRYPTED[cbe933070cc450a55c80eb985b9bfe7cbd09c2b7d9a3edb20e6ea0caeb6d6f738f6c33f9659c6ec65213fece1d214a04]
+  build_script: yarn run build
+  now_script: yarn global add now
+  publish_script: cd dist && now --token ${NOW_TOKEN}
