@@ -12,13 +12,13 @@
 
 This library actually has three parts:
 
-1. X, which is a lightweight jQuery-inspired DOM manipulation library.
+1. x, which is a lightweight jQuery-inspired DOM manipulation library.
 2. xAct, which is a simple templating engine built for simpler websites.
 3. xJax, which is really just a wrapper around the `fetch` api to make it slightly simpler.
 
 ## Code Examples
 
-Here's a code example for X:
+Here's a code example for x:
 ```javascript
 x("<button>").click(() => {
   console.log("The button was clicked!");
@@ -58,7 +58,7 @@ Cirrus CI will automatically test X. Below is how to do that manually for develo
 
 ### Testing
 
-Unit tests are run using [Jest](https://jestjs.io/). Make sure to update the appropriate file in `test` when adding new functionality to X. `dom.js` contains tests for the main X DOM manipulation library, `ajax.js` contains tests for xJax, and `templating.js` contains tests for xAct.
+Unit tests are run using [Jest](https://jestjs.io/). Make sure to update the appropriate file in `test` when adding new functionality to X. `dom.js` contains tests for the main x DOM manipulation library, `ajax.js` contains tests for xJax, and `templating.js` contains tests for xAct.
 
 Run the tests like this:
 ```
