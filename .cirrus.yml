@@ -9,6 +9,10 @@ test_task:
   test_script: yarn run test
   
 release_task:
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat package-lock.json
+    populate_script: npm install
   only_if: $CIRRUS_BRANCH == "master"
   depends_on:
     - test
