@@ -9,4 +9,4 @@ test_task:
   test_script: yarn run test
 
 check_task:
-  check_script: cmp -s ./dist/x.js ./x.js
+  check_script: cmp -s dist/x.js src/x.js
