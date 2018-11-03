@@ -165,9 +165,8 @@
         return false;
       }
       
-      line = line.trim();
       if (isJS) {
-        code += line.match(blockRegex) || checkAssignment(line) ? (line.endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
+        code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
       } else {
         code += line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n";
       }
