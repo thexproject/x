@@ -158,7 +158,6 @@
         let index = 0;
         for (let character of js) {
           let previous = index == 0 ? character : js[index - 1];
-          if (quoteRegex.test(character)) console.log(previous, character);
           if (quoteRegex.test(character) && previous != "\\") isInString = !isInString;
           if (character == "=" && !isInString && hasBeginning) return true;
           index++;
@@ -181,7 +180,6 @@
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-    console.log("code", code);
     x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 
