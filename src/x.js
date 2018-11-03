@@ -150,9 +150,24 @@
     let match;
     
     const append = (line, isJS) => {
+      const checkAssignment = js => {
+        if (!js.includes("=")) return false;
+        let quoteRegex = /"|'|`/;
+        let isInString = false;
+        let hasBeginning = js[0] != "=";
+        let previous = -1;
+        for (let character of js) {
+          if (previous < 0) previous = 0;
+          if (quoteRegex.test(character) && js[previous] != "\\") isInString = !isInString;
+          if (character == "=" && !isInString && hasBeginning) return true;
+          previous++;
+        }
+        return false;
+      }
+      
       line = line.trim();
       if (isJS) {
-        code += line.match(blockRegex) ? (line.endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
+        code += line.match(blockRegex) || checkAssignment(line) ? (line.endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
       } else {
         code += line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n";
       }
