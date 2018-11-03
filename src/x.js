@@ -155,17 +155,13 @@
         let quoteRegex = /"|'|`/;
         let isInString = false;
         let hasBeginning = js[0] != "=";
-        let previous = -1;
+        let index = 0;
         for (let character of js) {
-          let deIncrement = true;
-          if (previous < 0) {
-            previous = 0;
-            deIncrememt = false;
-          }
-          console.log(js[previous], character);
-          if (quoteRegex.test(character) && js[previous] != "\\") isInString = !isInString;
+          let previous = index == 0 ? character : js[index - 1];
+          console.log(previous, character);
+          if (quoteRegex.test(character) && previous != "\\") isInString = !isInString;
           if (character == "=" && !isInString && hasBeginning) return true;
-          if (deIncrement) previous++;
+          index++;
         }
         return false;
       }
