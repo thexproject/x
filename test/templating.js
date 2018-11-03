@@ -45,7 +45,7 @@ test("can set existing variables", () => {
     << thing = "newvalue" >>
     << thing >>
     << "thing that happens to have a = in the middle" >>
-    << "other thing with \" = and escape character" »
+    << "other thing with \" = and escape character" >>
   `);
   xAct("body");
   expect(x("body").html()).toEqual("thingymabobbernewvaluething that happens to have a = in the middleother thing with \" = and escape character");
