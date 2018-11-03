@@ -7,15 +7,3 @@ test_task:
     fingerprint_script: cat package-lock.json
     populate_script: npm install
   test_script: yarn run test
-  
-release_task:
-  node_modules_cache:
-    folder: node_modules
-    fingerprint_script: cat package-lock.json
-    populate_script: npm install
-  only_if: $CIRRUS_BRANCH == "master"
-  depends_on:
-    - test
-  build_script: yarn run build
-  setup_script: git config user.email "noreply@cirrus-ci.com" && git config user.name "Cirrus CI"
-  publish_script: git add dist && git commit -m "Build X" && git push

@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
+# Gulp Output
+dist/
+
 # Visual Studio Code Files
 .vscode/
