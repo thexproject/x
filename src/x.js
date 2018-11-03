@@ -158,6 +158,7 @@
         let previous = -1;
         for (let character of js) {
           if (previous < 0) previous = 0;
+          console.log(js[previous], character);
           if (quoteRegex.test(character) && js[previous] != "\\") isInString = !isInString;
           if (character == "=" && !isInString && hasBeginning) return true;
           previous++;
