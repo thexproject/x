@@ -18,5 +18,4 @@ release_task:
     - test
   build_script: yarn run build
   setup_script: git config user.email "noreply@cirrus-ci.com" && git config user.name "Cirrus CI"
-  publish_script: git commit -m "Build X" && git push
-  
+  publish_script: git add dist && git commit -m "Build X" && git push
