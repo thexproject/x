@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/github/license/thexproject/x.svg?style=flat)](https://github.com/thexproject/x/blob/master/LICENSE)
 [![Cirrus CI](https://api.cirrus-ci.com/github/thexproject/x.svg?branch=master)](https://cirrus-ci.com/github/thexproject/x)
 [![Documentation](https://img.shields.io/badge/documentation-here-blue.svg?style=flat)](https://github.com/thexproject/x/wiki)
+[![Gitter](https://img.shields.io/gitter/room/thexproject/Lobby.svg)](https://gitter.im/thexproject/Lobby)
 
 
 *A simple DOM manipulation library that comes with a templating engine and an easy-to-use AJAX function.*
