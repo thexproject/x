@@ -1,8 +1,9 @@
 # X
 
-[![Download](https://img.shields.io/badge/download-here-brightgreen.svg?style=flat-square)](https://dist-tblrjgmoht.now.sh/)
-[![License](https://img.shields.io/github/license/thexproject/x.svg?style=flat-square)](https://github.com/thexproject/x/blob/master/LICENSE)
-[![Documentation](https://img.shields.io/badge/documentation-here-blue.svg?style=flat-square)](https://github.com/thexproject/x/wiki)
+[![jsDelivr](https://img.shields.io/badge/on-jsDelivr-brightgreen.svg?style=flat)](https://cdn.jsdelivr.net/gh/thexproject/x/dist/)
+[![License](https://img.shields.io/github/license/thexproject/x.svg?style=flat)](https://github.com/thexproject/x/blob/master/LICENSE)
+[![Cirrus CI](https://api.cirrus-ci.com/github/thexproject/x.svg?branch=master)](https://cirrus-ci.com/github/thexproject/x)
+[![Documentation](https://img.shields.io/badge/documentation-here-blue.svg?style=flat)](https://github.com/thexproject/x/wiki)
 
 
 *A simple DOM manipulation library that comes with a templating engine and an easy-to-use AJAX function.*
@@ -53,7 +54,7 @@ x("<button>").click(async () => {
 
 ## Development
 
-Cirrus CI will automatically run the tests and build X. Below is how to do those manually for development purposes.
+Cirrus CI will automatically test X. Below is how to do that manually for development purposes.
 
 ### Testing
 
@@ -72,3 +73,12 @@ Manually run Gulp like this:
 ```
 $ npm run build
 ```
+
+### Both
+
+To both build and test X, run this command:
+```
+$ npm run both
+```
+
+**Before committing changes make sure to run this!** The CI will check whether or not you did, and PRs will fail if you didn't.

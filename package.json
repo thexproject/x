@@ -5,7 +5,8 @@
   "main": "x.js",
   "scripts": {
     "test": "jest",
-    "build": "gulp"
+    "build": "gulp",
+    "both": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
