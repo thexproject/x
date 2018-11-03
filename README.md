@@ -1,7 +1,6 @@
 # X
 
-[![GitHub release](https://img.shields.io/github/release/thexproject/x.svg?style=flat-square)](https://github.com/thexproject/x/releases)
-[![CircleCI Build](https://img.shields.io/circleci/project/github/thexproject/x/master.svg?style=flat-square)](https://circleci.com/gh/thexproject/x)
+[![Download](https://img.shields.io/badge/download-here-brightgreen.svg?style=flat-square)](https://dist-tblrjgmoht.now.sh/)
 [![License](https://img.shields.io/github/license/thexproject/x.svg?style=flat-square)](https://github.com/thexproject/x/blob/master/LICENSE)
 [![Documentation](https://img.shields.io/badge/documentation-here-blue.svg?style=flat-square)](https://github.com/thexproject/x/wiki)
 
@@ -54,7 +53,7 @@ x("<button>").click(async () => {
 
 ## Development
 
-CircleCI will automatically run the tests and build X. Below is how to do those manually for development purposes.
+Cirrus CI will automatically run the tests and build X. Below is how to do those manually for development purposes.
 
 ### Testing
 
