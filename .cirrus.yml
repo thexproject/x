@@ -20,4 +20,4 @@ publish_task:
     NOW_TOKEN: ENCRYPTED[e9b75730f88b4428798e37bfc6489e4d4dfd85030908712f3ddcfdc77c8ba45cb9284c217adb13233cd38ca796449a13]
   build_script: yarn run build
   now_script: yarn global add now
-  publish_script: cd dist && now --token $NOW_TOKEN
+  publish_script: cd dist && now --token $NOW_TOKEN --public
