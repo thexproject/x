@@ -7,3 +7,11 @@ test_task:
     fingerprint_script: cat package-lock.json
     populate_script: npm install
   test_script: yarn run test
+  
+release_task:
+  only_if: $CIRRUS_BRANCH == "master"
+  depends_on:
+    - test
+  env:
+    GITHUB_TOKEN: ENCRYPTED[7fdf2dbf12d93535c9cf405a2b2ddb157f5651efcf0963350e014455a6e6dc1ea00afe83c92106a185cb8970593b01a0]
+  script: yarn global add github-release && git tag $(cat version.txt) && git push --tags && github-release release --tag $(cat version.txt) --name "Version $(cat version.txt)" --description "This is version $(cat version.txt) of X. Download it below, and if this is your first time using it consider reading the [documentation](https://github.com/thexproject/x/wiki). This release was automated." && github-release upload --tag $(cat version.txt) --name "x.js" --file dist/x.js && github-release upload --tag $(cat version.txt) --name "x.min.js" --file dist/x.min.js
