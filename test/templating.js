@@ -44,9 +44,11 @@ test("can set existing variables", () => {
     << thing >>
     << thing = "newvalue" >>
     << thing >>
+    << "thing that happens to have a = in the middle" >>
+    << "other thing with \" = and escape character" »
   `);
   xAct("body");
-  expect(x("body").html()).toEqual("thingymabobbernewvalue");
+  expect(x("body").html()).toEqual("thingymabobbernewvaluething that happens to have a = in the middleother thing with \" = and escape character");
 });
 
 test("can get data set in model", () => {
