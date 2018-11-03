@@ -17,7 +17,7 @@ publish_task:
   depends_on:
     - test
   env:
-    NOW_TOKEN: ENCRYPTED[cbe933070cc450a55c80eb985b9bfe7cbd09c2b7d9a3edb20e6ea0caeb6d6f738f6c33f9659c6ec65213fece1d214a04]
+    NOW_TOKEN: ENCRYPTED[e9b75730f88b4428798e37bfc6489e4d4dfd85030908712f3ddcfdc77c8ba45cb9284c217adb13233cd38ca796449a13]
   build_script: yarn run build
   now_script: yarn global add now
   publish_script: cd dist && now --token $NOW_TOKEN
