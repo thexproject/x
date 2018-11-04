@@ -3,6 +3,7 @@
 [![jsDelivr](https://img.shields.io/badge/on-jsDelivr-brightgreen.svg?style=flat)](https://cdn.jsdelivr.net/gh/thexproject/x/dist/)
 [![License](https://img.shields.io/github/license/thexproject/x.svg?style=flat)](https://github.com/thexproject/x/blob/master/LICENSE)
 [![Cirrus CI](https://api.cirrus-ci.com/github/thexproject/x.svg?branch=master)](https://cirrus-ci.com/github/thexproject/x)
+[![Code Quality](https://img.shields.io/codacy/grade/a445cefdb15847aca2a393d1ccb72000/master.svg?style=flat)](https://www.codacy.com/app/thexproject/x?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thexproject/x&amp;utm_campaign=Badge_Grade)
 [![Documentation](https://img.shields.io/badge/documentation-here-blue.svg?style=flat)](https://github.com/thexproject/x/wiki)
 [![Gitter](https://img.shields.io/gitter/room/thexproject/Lobby.svg)](https://gitter.im/thexproject/Lobby)
 

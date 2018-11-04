@@ -16,3 +16,5 @@
 - Start writing documentation
 - Create this changelog
 - Set up chat on Gitter ([here](https://gitter.im/thexproject/Lobby))
+- Get jsDelivr working
+- Set up Codacy (code quality reviews)
