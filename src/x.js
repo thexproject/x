@@ -154,12 +154,12 @@
         if (!js.includes("=")) return false;
         const quoteRegex = /"|'|`/;
         let isInString = false;
-        let hasBeginning = js[0] != "=";
+        let hasBeginning = js[0] !== "=";
         let currentQuote = "";
         let index = 0;
         for (let character of js) {
-          let previous = index == 0 ? character : js[index - 1];
-          if (quoteRegex.test(character) && previous != "\\") {
+          let previous = index === 0 ? character : js[index - 1];
+          if (quoteRegex.test(character) && previous !== "\\") {
             if (isInString) {
               if (character === currentQuote) isInString = false;
             } else {
@@ -167,11 +167,11 @@
               currentQuote = character;
             }
           }
-          if (character == "=" && !isInString && hasBeginning) return true;
+          if (character === "=" && !isInString && hasBeginning) return true;
           index++;
         }
         return false;
-      }
+      };
       
       if (isJS) {
         code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : `list.push(${line});\n`;
@@ -202,7 +202,7 @@
         queryString += encodeURIComponent(queries[key]);
         queryString += "&";
       }
-      queryString = queryString.substring(0, str.length - 1);
+      queryString = queryString.substring(0, queryString.length - 1);
     }
 
     let response = await fetch(uri + queryString);
