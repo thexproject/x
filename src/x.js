@@ -147,6 +147,14 @@
       }
       return this;
     }
+    leave(handler, that) {
+      if (handler === undefined) {
+        this.node.click();
+      } else {
+        this.handle("blur", "mouseleave", handler, that);
+      }
+      return this;
+    }
 
     find(query) {
       return new xObject(this.node.querySelector(query));
