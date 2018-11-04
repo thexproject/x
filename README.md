@@ -83,3 +83,9 @@ $ npm run both
 ```
 
 **Before committing changes make sure to run this!** The CI will check whether or not you did, and PRs will fail if you didn't.
+
+## Other Links
+
+- [Our Gitter chat](https://gitter.im/thexproject/Lobby)
+- [The changelog](https://github.com/thexproject/x/blob/master/CHANGELOG.md)
+- [The license (AGPL-3.0)](https://github.com/thexproject/x/blob/master/LICENSE)
