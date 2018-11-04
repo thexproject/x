@@ -39,7 +39,7 @@ test("can prepend created DOM node to body", () => {
 test("can select DOM node", () => {
   require("../src/x");
 
-  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>"
+  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>";
 
   let selected = x("#domnode");
   expect(selected.node).toBeTruthy();

@@ -122,7 +122,7 @@
       } else {
         this.node.onclick = () => {
           handler(that);
-        }
+        };
       }
       return this;
     }
@@ -139,8 +139,8 @@
   // xAct - Simple JavaScript templating library
   
   window.xAct = (element, data) => {
-    let html = x(element).html();
-    html = x("<textarea>").html(html).value();
+    let html = new xObject(element).html();
+    html = new xObject("<textarea>").html(html).value();
   
     const templateRegex = /<<([^>>]+)?>>/g;
     const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
@@ -187,7 +187,7 @@
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-    x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
+    new xObject(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 
   // xJax - A wrapper around fetch to make it slightly simpler
@@ -195,7 +195,7 @@
   window.xJax = async (uri, queries) => {
     let queryString = "";
     if (queries !== undefined) {
-      queryString += "?"
+      queryString += "?";
       for (let key in queries) {
         queryString += encodeURIComponent(key);
         queryString += "=";
