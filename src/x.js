@@ -122,7 +122,7 @@
       } else {
         this.node.onclick = () => {
           handler(that);
-        }
+        };
       }
       return this;
     }
@@ -139,22 +139,44 @@
   // xAct - Simple JavaScript templating library
   
   window.xAct = (element, data) => {
-    let html = x(element).html();
-    html = x("<textarea>").html(html).value();
+    let html = new xObject(element).html();
+    html = new xObject("<textarea>").html(html).value();
   
-    let templateRegex = /<<([^>>]+)?>>/g;
-    let blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
+    const templateRegex = /<<([^>>]+)?>>/g;
+    const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
       
     let code = "var list = [];\n";
     let index = 0;
     let match;
     
     const append = (line, isJS) => {
-      line = line.trim();
+      const checkAssignment = js => {
+        if (!js.includes("=")) return false;
+        const quoteRegex = /"|'|`/;
+        let isInString = false;
+        let hasBeginning = js[0] !== "=";
+        let currentQuote = "";
+        let index = 0;
+        for (let character of js) {
+          let previous = index === 0 ? character : js[index - 1];
+          if (quoteRegex.test(character) && previous !== "\\") {
+            if (isInString) {
+              if (character === currentQuote) isInString = false;
+            } else {
+              isInString = true;
+              currentQuote = character;
+            }
+          }
+          if (character === "=" && !isInString && hasBeginning) return true;
+          index++;
+        }
+        return false;
+      };
+      
       if (isJS) {
-        code += line.match(blockRegex) ? (line.endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
+        code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : `list.push(${line});\n`;
       } else {
-        code += line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n";
+        code += line === "" ? "" : `list.push("${line.replace(/"/g, "\\\"")}");\n`;
       }
       return append;
     }
@@ -165,23 +187,22 @@
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-    
-    x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
+    new xObject(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 
-  // xJax - A wrapper around fetch to make it simpler
+  // xJax - A wrapper around fetch to make it slightly simpler
 
   window.xJax = async (uri, queries) => {
     let queryString = "";
     if (queries !== undefined) {
-      queryString += "?"
+      queryString += "?";
       for (let key in queries) {
         queryString += encodeURIComponent(key);
         queryString += "=";
         queryString += encodeURIComponent(queries[key]);
         queryString += "&";
       }
-      queryString = queryString.substring(0, str.length - 1);
+      queryString = queryString.substring(0, queryString.length - 1);
     }
 
     let response = await fetch(uri + queryString);

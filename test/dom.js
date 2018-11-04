@@ -39,7 +39,7 @@ test("can prepend created DOM node to body", () => {
 test("can select DOM node", () => {
   require("../src/x");
 
-  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>"
+  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>";
 
   let selected = x("#domnode");
   expect(selected.node).toBeTruthy();
@@ -51,7 +51,7 @@ test("can select DOM node", () => {
 test("can modify selected DOM node", () => {
   require("../src/x");
 
-  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>"
+  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>";
 
   let selected = x("#domnode");
   selected.text("This is a modified DOM node.");
@@ -61,7 +61,7 @@ test("can modify selected DOM node", () => {
 test("can add, set, and get classes of DOM node", () => {
   require("../src/x");
 
-  document.body.innerHTML = "<p id=\"domnode\" class=\"class1 class2\">This is a DOM node.</p>"
+  document.body.innerHTML = "<p id=\"domnode\" class=\"class1 class2\">This is a DOM node.</p>";
 
   let selected = x("#domnode");
   expect(selected.classes()).toEqual(["class1", "class2"]);

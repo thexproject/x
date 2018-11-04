@@ -10,4 +10,4 @@ exports.default = function() {
       .pipe(rename({ extname: ".min.js" })),
     src("src/x.js")
   ).pipe(dest("dist/"));
-}
+};
