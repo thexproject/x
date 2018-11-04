@@ -127,13 +127,31 @@
       this.node.parentNode.removeChild(this.node);
     }
 
+    handle(touchEvent, mouseEvent, handler, that) {
+      this.node.addEventListener("touchend", event => { event.preventDefault(); handler(that); }, true);
+      this.node.addEventListener("click", event => { event.preventDefault(); handler(that); }, true);
+    }
     click(handler, that) {
       if (handler === undefined) {
         this.node.click();
       } else {
-        this.node.onclick = () => {
-          handler(that);
-        };
+        this.handle("touchend", "click", handler, that);
+      }
+      return this;
+    }
+    hover(handler, that) {
+      if (handler === undefined) {
+        this.node.click();
+      } else {
+        this.handle("touchstart", "mouseover", handler, that);
+      }
+      return this;
+    }
+    leave(handler, that) {
+      if (handler === undefined) {
+        this.node.click();
+      } else {
+        this.handle("blur", "mouseleave", handler, that);
       }
       return this;
     }
