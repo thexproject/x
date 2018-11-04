@@ -114,9 +114,9 @@
 
     style(key, value) {
       if (key === undefined) {
-        return this.node.style._values;
+        return this.node.style;
       } else if (value === undefined) {
-        return this.node.style._values[key];
+        return this.node.style[key];
       } else {
         this.node.style[key] = value;
         return this;
