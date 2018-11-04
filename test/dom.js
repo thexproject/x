@@ -1,3 +1,5 @@
+require("jest-dom/extend-expect");
+
 test("can create DOM node", () => {
   require("../src/x");
   
@@ -22,7 +24,7 @@ test("can append created DOM node to body", () => {
   let domNode = x("<p>").text("This is a DOM node.").id("domnode");
   domNode.appendTo("body");
 
-  expect(document.body.innerHTML).toEqual("This should be before.<p id=\"domnode\">This is a DOM node.</p>");
+  expect(document.body).toContainHTML("This should be before.<p id=\"domnode\">This is a DOM node.</p>");
 });
 
 test("can prepend created DOM node to body", () => {
@@ -33,7 +35,7 @@ test("can prepend created DOM node to body", () => {
   let domNode = x("<p>").text("This is a DOM node.").id("domnode");
   domNode.prependTo("body");
 
-  expect(document.body.innerHTML).toEqual("<p id=\"domnode\">This is a DOM node.</p>This should be after.");
+  expect(document.body).toContainHTML("<p id=\"domnode\">This is a DOM node.</p>This should be after.");
 });
 
 test("can select DOM node", () => {
@@ -45,7 +47,7 @@ test("can select DOM node", () => {
   expect(selected.node).toBeTruthy();
   expect(selected.node).toBeInstanceOf(Node);
 
-  expect(selected.text()).toEqual("This is a DOM node.");
+  expect(selected.node).toContainHTML("This is a DOM node.");
 });
 
 test("can modify selected DOM node", () => {
@@ -55,7 +57,7 @@ test("can modify selected DOM node", () => {
 
   let selected = x("#domnode");
   selected.text("This is a modified DOM node.");
-  expect(x("#domnode").text()).toEqual("This is a modified DOM node.");
+  expect(x("#domnode").node).toContainHTML("This is a modified DOM node.");
 });
 
 test("can add, set, and get classes of DOM node", () => {
@@ -97,7 +99,7 @@ test("can destroy DOM node", () => {
   let selected = x("#domnode");
   selected.destroy();
   selected = x("#domnode");
-  expect(selected.node).toBeNull();
+  expect(selected.node).not.toBeInTheDocument();
 });
 
 test("can register click handler and click element", () => {
@@ -119,6 +121,18 @@ test("can register click handler and click element", () => {
   expect(got).toEqual(this.thingy);
 });
 
+test("can get/set styles on element", () => {
+  require("../src/x");
+
+  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>"
+
+  x("#domnode").style("color", "green");
+
+  expect(x("#domnode").node).toHaveStyle("color: green;");
+  expect(x("#domnode").style("color")).toEqual("green");
+  expect(x("#domnode").style().color).toEqual("green");
+});
+
 test("can find children and manipulate them", () => {
   require("../src/x");
 
@@ -129,5 +143,5 @@ test("can find children and manipulate them", () => {
 
   child.text("This is some new text.");
 
-  expect(x("#parent").html()).toEqual("I'm a parent. <span id=\"child\">This is some new text.</span>");
+  expect(x("#parent").node).toContainHTML("I'm a parent. <span id=\"child\">This is some new text.</span>");
 });

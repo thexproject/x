@@ -1,5 +1,15 @@
 # X Changelog
 
+## 1.0.2
+
+## Testing
+
+- Use `jest-dom` for testing DOM to improve tests
+
+### x
+
+- Add `style()` function to set/get styles from a DOM node
+
 ## 1.0.1
 
 ### Testing

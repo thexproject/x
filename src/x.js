@@ -112,6 +112,17 @@
       }
     }
 
+    style(key, value) {
+      if (key === undefined) {
+        return this.node.style._values;
+      } else if (value === undefined) {
+        return this.node.style._values[key];
+      } else {
+        this.node.style[key] = value;
+        return this;
+      }
+    }
+
     destroy() {
       this.node.parentNode.removeChild(this.node);
     }
