@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can define and get variables 1`] = `"        thingymabobber  "`;
+
+exports[`can get data set in model 1`] = `"    thingymabobber    thingymabobber  "`;
+
+exports[`can set existing variables 1`] = `"        thingymabobber        newvalue    thing that happens to have a = in the middle    other thing with \\" = and escape character    other thing with ' = and different quote  "`;
+
+exports[`for statements work 1`] = `"          Hello world!          Hello world!          Hello world!          Hello world!          Hello world!      "`;
+
+exports[`if statements work 1`] = `"          Hello world!          "`;

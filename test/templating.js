@@ -10,7 +10,7 @@ test("if statements work", () => {
     << } >>
   `);
   xAct("body");
-  expect(x("body").html()).toEqual("Hello world!");
+  expect(x("body").html()).toMatchSnapshot();
 });
 
 test("for statements work", () => {
@@ -22,7 +22,7 @@ test("for statements work", () => {
     << } >>
   `);
   xAct("body");
-  expect(x("body").html()).toEqual("Hello world!Hello world!Hello world!Hello world!Hello world!");
+  expect(x("body").html()).toMatchSnapshot();
 });
 
 test("can define and get variables", () => {
@@ -33,7 +33,7 @@ test("can define and get variables", () => {
     << thing >>
   `);
   xAct("body");
-  expect(x("body").html()).toEqual("thingymabobber");
+  expect(x("body").html()).toMatchSnapshot();
 });
 
 test("can set existing variables", () => {
@@ -46,9 +46,10 @@ test("can set existing variables", () => {
     << thing >>
     << "thing that happens to have a = in the middle" >>
     << "other thing with \\" = and escape character" >>
+    << "other thing with ' = and different quote" >>
   `);
   xAct("body");
-  expect(x("body").html()).toEqual("thingymabobbernewvaluething that happens to have a = in the middleother thing with \" = and escape character");
+  expect(x("body").html()).toMatchSnapshot();
 });
 
 test("can get data set in model", () => {
@@ -61,5 +62,5 @@ test("can get data set in model", () => {
   xAct("body", {
     "thing": "thingymabobber"
   });
-  expect(x("body").html()).toEqual("thingymabobberthingymabobber");
+  expect(x("body").html()).toMatchSnapshot();
 });

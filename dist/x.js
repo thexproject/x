@@ -142,19 +142,41 @@
     let html = x(element).html();
     html = x("<textarea>").html(html).value();
   
-    let templateRegex = /<<([^>>]+)?>>/g;
-    let blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
+    const templateRegex = /<<([^>>]+)?>>/g;
+    const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
       
     let code = "var list = [];\n";
     let index = 0;
     let match;
     
     const append = (line, isJS) => {
-      line = line.trim();
+      const checkAssignment = js => {
+        if (!js.includes("=")) return false;
+        const quoteRegex = /"|'|`/;
+        let isInString = false;
+        let hasBeginning = js[0] != "=";
+        let currentQuote = "";
+        let index = 0;
+        for (let character of js) {
+          let previous = index == 0 ? character : js[index - 1];
+          if (quoteRegex.test(character) && previous != "\\") {
+            if (isInString) {
+              if (character === currentQuote) isInString = false;
+            } else {
+              isInString = true;
+              currentQuote = character;
+            }
+          }
+          if (character == "=" && !isInString && hasBeginning) return true;
+          index++;
+        }
+        return false;
+      }
+      
       if (isJS) {
-        code += line.match(blockRegex) ? (line.endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
+        code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : `list.push(${line});\n`;
       } else {
-        code += line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n";
+        code += line === "" ? "" : `list.push("${line.replace(/"/g, "\\\"")}");\n`;
       }
       return append;
     }
@@ -165,7 +187,6 @@
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-    
     x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 

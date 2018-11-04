@@ -149,34 +149,24 @@
     let index = 0;
     let match;
     
-    const eatWhitespace = html => {
-      const whitespaceRegex = /\s/g;
-      
-      let newHtml = "";
-      let wasWhitespace = false;
-      for (let character of html) {
-        if (whitespaceRegex.test(character)) {
-          if (!wasWhitespace) {
-            wasWhitespace = true;
-            newHtml += " ";
-          }
-        } else {
-          newHtml += character;
-        }
-      }
-      return newHtml;
-    }
-    
     const append = (line, isJS) => {
       const checkAssignment = js => {
         if (!js.includes("=")) return false;
         const quoteRegex = /"|'|`/;
         let isInString = false;
         let hasBeginning = js[0] != "=";
+        let currentQuote = "";
         let index = 0;
         for (let character of js) {
           let previous = index == 0 ? character : js[index - 1];
-          if (quoteRegex.test(character) && previous != "\\") isInString = !isInString;
+          if (quoteRegex.test(character) && previous != "\\") {
+            if (isInString) {
+              if (character === currentQuote) isInString = false;
+            } else {
+              isInString = true;
+              currentQuote = character;
+            }
+          }
           if (character == "=" && !isInString && hasBeginning) return true;
           index++;
         }
@@ -184,9 +174,9 @@
       }
       
       if (isJS) {
-        code += eatWhitespace(line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n");
+        code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : `list.push(${line});\n`;
       } else {
-        code += eatWhitespace(line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n");
+        code += line === "" ? "" : `list.push("${line.replace(/"/g, "\\\"")}");\n`;
       }
       return append;
     }
@@ -200,7 +190,7 @@
     x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 
-  // xJax - A wrapper around fetch to make it simpler
+  // xJax - A wrapper around fetch to make it slightly simpler
 
   window.xJax = async (uri, queries) => {
     let queryString = "";
