@@ -163,6 +163,8 @@
         } else {
           newHtml += character;
         }
+      }
+      return newHtml;
     }
     
     const append = (line, isJS) => {
@@ -182,9 +184,9 @@
       }
       
       if (isJS) {
-        code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n";
+        code += eatWhitespace(line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : "list.push(" + line + ");\n");
       } else {
-        code += line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n";
+        code += eatWhitespace(line === "" ? "" : "list.push(\"" + line.replace(/"/g, "\\\"") + "\");\n");
       }
       return append;
     }
