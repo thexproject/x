@@ -190,7 +190,7 @@
     x(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
   }
 
-  // xJax - A wrapper around fetch to make it simpler
+  // xJax - A wrapper around fetch to make it slightly simpler
 
   window.xJax = async (uri, queries) => {
     let queryString = "";
