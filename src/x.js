@@ -142,17 +142,33 @@
     let html = x(element).html();
     html = x("<textarea>").html(html).value();
   
-    let templateRegex = /<<([^>>]+)?>>/g;
-    let blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
+    const templateRegex = /<<([^>>]+)?>>/g;
+    const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
       
     let code = "var list = [];\n";
     let index = 0;
     let match;
     
+    const eatWhitespace = html => {
+      const whitespaceRegex = /\s/g;
+      
+      let newHtml = "";
+      let wasWhitespace = false;
+      for (let character of html) {
+        if (whitespaceRegex.test(character)) {
+          if (!wasWhitespace) {
+            wasWhitespace = true;
+            newHtml += " ";
+          }
+        } else {
+          newHtml += character;
+        }
+    }
+    
     const append = (line, isJS) => {
       const checkAssignment = js => {
         if (!js.includes("=")) return false;
-        let quoteRegex = /"|'|`/;
+        const quoteRegex = /"|'|`/;
         let isInString = false;
         let hasBeginning = js[0] != "=";
         let index = 0;
