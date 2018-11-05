@@ -121,6 +121,21 @@ test("can register click handler and click element", () => {
   expect(got).toEqual(this.thingy);
 });
 
+test("can register hover handler", () => {
+  require("../src/x");
+
+  document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>"
+
+  let selected = x("#domnode");
+
+  this.thingy = "thingymabobber";
+  let got = "";
+  const hovered = jest.fn(that => {
+    got = that.thingy;
+  });
+  selected.hover(hovered, this);
+});
+
 test("can get/set styles on element", () => {
   require("../src/x");
 
