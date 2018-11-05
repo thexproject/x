@@ -2,13 +2,15 @@
 
 ## 1.0.2
 
-## Testing
+### Testing
 
 - Use `jest-dom` for testing DOM to improve tests
 
 ### x
 
 - Add `style()` function to set/get styles from a DOM node
+- Add `leave()` and `hover()` events
+- Improve event handling
 
 ## 1.0.1
 
