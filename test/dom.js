@@ -117,7 +117,7 @@ test("can register click handler and click element", () => {
   selected.click(clicked, this);
   selected.click();
 
-  expect(clicked).toBeCalled();
+  expect(clicked).toBeCalledTimes(1);
   expect(got).toEqual(this.thingy);
 });
 
