@@ -23,7 +23,7 @@
           this.node = document.querySelector(query);
         }
       }
-      this.node.listeners = this.node.listeners === undefined ? [] : this.node.listeners;
+      if (this.node) this.node.listeners = this.node.listeners === undefined ? [] : this.node.listeners;
     }
 
     value(newValue) {
@@ -137,16 +137,12 @@
       this.node.removeEventListener(eventName, this.node.listeners[handler], false);
       return this;
     }
-    handle(touchEvent, mouseEvent, handler, that) {
-      this.node.addEventListener(touchEvent, event => { event.preventDefault(); handler(that); }, true);
-      this.node.addEventListener(mouseEvent, event => { event.preventDefault(); handler(that); }, true);
-      return this;
-    }
     click(handler, that) {
       if (handler === undefined) {
         this.node.click();
       } else {
-        this.handle("touchend", "click", handler, that);
+        this.on("touchend", event => { event.preventDefault(); handler(that); }, true);
+        this.on("click", event => { event.preventDefault(); handler(that); }, true);
       }
       return this;
     }
@@ -154,15 +150,8 @@
       if (handler === undefined) {
         this.node.click();
       } else {
-        this.handle("touchstart", "mouseover", handler, that);
-      }
-      return this;
-    }
-    leave(handler, that) {
-      if (handler === undefined) {
-        this.node.click();
-      } else {
-        this.handle("", "mouseleave", handler, that);
+        this.on("touchstart", event => { event.preventDefault(); handler(that); }, true);
+        this.on("mouseover", event => { event.preventDefault(); handler(that); }, true);
       }
       return this;
     }
