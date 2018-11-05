@@ -128,8 +128,8 @@
     }
 
     handle(touchEvent, mouseEvent, handler, that) {
-      this.node.addEventListener("touchend", event => { event.preventDefault(); handler(that); }, true);
-      this.node.addEventListener("click", event => { event.preventDefault(); handler(that); }, true);
+      this.node.addEventListener(touchEvent, event => { event.preventDefault(); handler(that); }, true);
+      this.node.addEventListener(mouseEvent, event => { event.preventDefault(); handler(that); }, true);
     }
     click(handler, that) {
       if (handler === undefined) {

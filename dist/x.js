@@ -114,9 +114,9 @@
 
     style(key, value) {
       if (key === undefined) {
-        return this.node.style._values;
+        return this.node.style;
       } else if (value === undefined) {
-        return this.node.style._values[key];
+        return this.node.style[key];
       } else {
         this.node.style[key] = value;
         return this;
@@ -128,8 +128,8 @@
     }
 
     handle(touchEvent, mouseEvent, handler, that) {
-      this.node.addEventListener("touchend", event => { event.preventDefault(); handler(that); }, true);
-      this.node.addEventListener("click", event => { event.preventDefault(); handler(that); }, true);
+      this.node.addEventListener(touchEvent, event => { event.preventDefault(); handler(that); }, true);
+      this.node.addEventListener(mouseEvent, event => { event.preventDefault(); handler(that); }, true);
     }
     click(handler, that) {
       if (handler === undefined) {
