@@ -23,6 +23,7 @@
           this.node = document.querySelector(query);
         }
       }
+      this.node.listeners = this.node.listeners === undefined ? [] : this.node.listeners;
     }
 
     value(newValue) {
@@ -128,7 +129,12 @@
     }
 
     on(eventName, handler, that) {
-      this.node.addEventListener(eventName, event => { event.preventDefault(); handler(event, that); }, { passive: true, capture: true });
+      this.node.listeners[handler] = event => { handler(event, that); };
+      this.node.addEventListener(eventName, this.node.listeners[handler], false);
+      return this;
+    }
+    rmOn(eventName, handler) {
+      this.node.removeEventListener(eventName, this.node.listeners[handler], false);
       return this;
     }
     handle(touchEvent, mouseEvent, handler, that) {
