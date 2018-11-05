@@ -9,6 +9,10 @@
 ### x
 
 - Add `style()` function to set/get styles from a DOM node
+- Add `hover()` event listener
+- Improve `click()` for touch devices
+- Add `on()` for custom event listeners
+- Add `rmOn()` to remove event listeners created with `on()`
 
 ## 1.0.1
 
