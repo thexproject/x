@@ -159,6 +159,9 @@
     find(query) {
       return new xObject(this.node.querySelector(query));
     }
+    parent() {
+      return new xObject(this.node.parentNode);
+    }
   }
 
   window.x = query => {
