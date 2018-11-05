@@ -1,6 +1,5 @@
 (() => {
   // x - Lightweight DOM manipulation library
-
   class xObject {
     constructor(query) {
       if (query instanceof Node) {
@@ -169,7 +168,6 @@
   };
 
   // xAct - Simple JavaScript templating library
-  
   window.xAct = (element, data) => {
     let html = new xObject(element).html();
     html = new xObject("<textarea>").html(html).value();
@@ -223,7 +221,6 @@
   }
 
   // xJax - A wrapper around fetch to make it slightly simpler
-
   window.xJax = async (uri, queries) => {
     let queryString = "";
     if (queries !== undefined) {
