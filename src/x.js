@@ -114,9 +114,9 @@
 
     style(key, value) {
       if (key === undefined) {
-        return this.node.style._values;
+        return this.node.style;
       } else if (value === undefined) {
-        return this.node.style._values[key];
+        return this.node.style[key];
       } else {
         this.node.style[key] = value;
         return this;
@@ -144,14 +144,6 @@
         this.node.click();
       } else {
         this.handle("touchstart", "mouseover", handler, that);
-      }
-      return this;
-    }
-    leave(handler, that) {
-      if (handler === undefined) {
-        this.node.click();
-      } else {
-        this.handle("blur", "mouseleave", handler, that);
       }
       return this;
     }

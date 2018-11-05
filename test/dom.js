@@ -125,6 +125,8 @@ test("can get/set styles on element", () => {
   require("../src/x");
 
   document.body.innerHTML = "<p id=\"domnode\">This is a DOM node.</p>"
+ 
+  expect(x("#domnode").style()).not.toBeUndefined();
 
   x("#domnode").style("color", "green");
 
