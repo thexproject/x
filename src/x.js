@@ -47,6 +47,18 @@
         return this.node.innerHTML;
       } else {
         this.node.innerHTML = newHtml;
+        
+        const recursiveReplace = node => {
+          if (node.tagName.toLowerCase() === "script") {
+            node.parentNode.replaceChild(x("<script>").text(node.innerHTML), node);
+          } else {
+            for (let child of node.childNodes) {
+              recursiveReplace(child);
+            }
+          }
+        }
+        recursiveReplace(this.node);
+        
         return this;
       }
     }
