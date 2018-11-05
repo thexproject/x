@@ -128,7 +128,7 @@
     }
 
     on(eventName, handler, that) {
-      this.node.addEventListener(eventName, event => { event.preventDefault(); handler(that); }, { passive: true, capture: true });
+      this.node.addEventListener(eventName, event => { event.preventDefault(); handler(event, that); }, { passive: true, capture: true });
     }
     handle(touchEvent, mouseEvent, handler, that) {
       this.node.addEventListener(touchEvent, event => { event.preventDefault(); handler(that); }, { passive: true, capture: true });
