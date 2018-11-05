@@ -170,10 +170,7 @@
 
   // xAct - Simple JavaScript templating library
   
-  window.xAct = (element, data) => {
-    let html = new xObject(element).html();
-    html = new xObject("<textarea>").html(html).value();
-  
+  window.xAct = (html, data) => {
     const templateRegex = /<<([^>>]+)?>>/g;
     const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
       
@@ -219,7 +216,8 @@
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-    new xObject(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
+    
+    return new Function(code.replace(/[\r\t\n]/g, "")).apply(data);
   }
 
   // xJax - A wrapper around fetch to make it slightly simpler
