@@ -23,6 +23,7 @@
           this.node = document.querySelector(query);
         }
       }
+      if (this.node) this.node.listeners = this.node.listeners === undefined ? [] : this.node.listeners;
     }
 
     value(newValue) {
@@ -112,23 +113,54 @@
       }
     }
 
+    style(key, value) {
+      if (key === undefined) {
+        return this.node.style;
+      } else if (value === undefined) {
+        return this.node.style[key];
+      } else {
+        this.node.style[key] = value;
+        return this;
+      }
+    }
+
     destroy() {
       this.node.parentNode.removeChild(this.node);
     }
 
+    on(eventName, handler, that) {
+      this.node.listeners[handler] = event => { handler(event, that); };
+      this.node.addEventListener(eventName, this.node.listeners[handler], false);
+      return this;
+    }
+    rmOn(eventName, handler) {
+      this.node.removeEventListener(eventName, this.node.listeners[handler], false);
+      return this;
+    }
     click(handler, that) {
       if (handler === undefined) {
         this.node.click();
       } else {
-        this.node.onclick = () => {
-          handler(that);
-        };
+        this.on("touchend", event => { event.preventDefault(); handler(that); }, true);
+        this.on("click", event => { event.preventDefault(); handler(that); }, true);
+      }
+      return this;
+    }
+    hover(handler, that) {
+      if (handler === undefined) {
+        this.node.click();
+      } else {
+        this.on("touchstart", event => { event.preventDefault(); handler(that); }, true);
+        this.on("mouseover", event => { event.preventDefault(); handler(that); }, true);
       }
       return this;
     }
 
     find(query) {
       return new xObject(this.node.querySelector(query));
+    }
+    parent() {
+      return new xObject(this.node.parentNode);
     }
   }
 
