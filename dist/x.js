@@ -7,6 +7,8 @@
         this.node = query;
       } else if (query instanceof xObject) {
         this.node = query.node;
+      } else if (!query && document.currentScript) {
+        this.node = document.currentScript.parentNode;
       } else {
         if (query.startsWith("<")) {
           query = query.substring(1);
@@ -47,6 +49,19 @@
         return this.node.innerHTML;
       } else {
         this.node.innerHTML = newHtml;
+
+        const recursiveReplace = node => {
+          if (node.tagName === "SCRIPT") {
+            node.parentNode.replaceChild(x("<script>").text(node.innerHTML).node, node);
+          } else {
+            let children = (/IFRAME|TEMPLATE/).exec(node.tagName) ? node.content.childNodes : node.childNodes;
+            for (let child of children) {
+              recursiveReplace(child);
+            }
+          }
+        }
+        recursiveReplace(this.node);
+
         return this;
       }
     }
@@ -58,9 +73,7 @@
       } else if (query instanceof xObject) {
         node = query.node;
       } else {
-        let template = document.createElement("template");
-        template.innerHTML = query.trim();
-        node = template.content.firstChild;
+        node = x("<template>").html(query.trim()).node.content.firstChild;
       }
 
       this.node.appendChild(node);
@@ -73,9 +86,7 @@
       } else if (query instanceof xObject) {
         node = query.node;
       } else {
-        let template = document.createElement("template");
-        template.innerHTML = query.trim();
-        node = template.content.firstChild;
+        node = x("<template>").html(query.trim()).node.content.firstChild;
       }
 
       this.node.insertBefore(node, this.node.firstChild);
@@ -104,6 +115,15 @@
       this.node.className += newClass;
       return this;
     }
+    removeClass(className) {
+      let classes = this.node.className.split(" ");
+      if (classes.includes(className)) {
+        delete classes[classes.indexOf(className)];
+      }
+      this.node.className = classes.join(" ");
+      return this;
+    }
+
     id(newId) {
       if (newId === undefined) {
         return this.node.id;
@@ -169,18 +189,15 @@
   };
 
   // xAct - Simple JavaScript templating library
-  
-  window.xAct = (element, data) => {
-    let html = new xObject(element).html();
-    html = new xObject("<textarea>").html(html).value();
-  
+
+  window.xAct = (html, data) => {
     const templateRegex = /<<([^>>]+)?>>/g;
     const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
-      
+
     let code = "var list = [];\n";
     let index = 0;
     let match;
-    
+
     const append = (line, isJS) => {
       const checkAssignment = js => {
         if (!js.includes("=")) return false;
@@ -204,7 +221,7 @@
         }
         return false;
       };
-      
+
       if (isJS) {
         code += line.match(blockRegex) || checkAssignment(line.trim()) ? (line.trim().endsWith(";") ? line : line + ";") + "\n" : `list.push(${line});\n`;
       } else {
@@ -212,14 +229,15 @@
       }
       return append;
     }
-    
+
     while (match = templateRegex.exec(html)) {
       append(html.slice(index, match.index))(match[1], true);
       index = match.index + match[0].length;
     }
     append(html.substr(index, html.length - index));
     code += "return list.join(\"\");";
-    new xObject(element).html(new Function(code.replace(/[\r\t\n]/g, "")).apply(data));
+
+    return new Function(code.replace(/[\r\t\n]/g, "")).apply(data);
   }
 
   // xJax - A wrapper around fetch to make it slightly simpler
