@@ -1,45 +1,39 @@
 test("if statements work", () => {
   require("../src/x");
 
-  x("body").html(`
+  expect(xAct(`
     << if (true) { >>
       Hello world!
     << } >>
     << if (false) { >>
       Hello otherworld!
     << } >>
-  `);
-  xAct("body");
-  expect(x("body").html()).toMatchSnapshot();
+  `)).toMatchSnapshot();
 });
 
 test("for statements work", () => {
   require("../src/x");
 
-  x("body").html(`
+  expect(xAct(`
     << for (let i = 0; i < 5; i++) { >>
       Hello world!
     << } >>
-  `);
-  xAct("body");
-  expect(x("body").html()).toMatchSnapshot();
+  `)).toMatchSnapshot();
 });
 
 test("can define and get variables", () => {
   require("../src/x");
 
-  x("body").html(`
+  expect(xAct(`
     << let thing = "thingymabobber" >>
     << thing >>
-  `);
-  xAct("body");
-  expect(x("body").html()).toMatchSnapshot();
+  `)).toMatchSnapshot();
 });
 
 test("can set existing variables", () => {
   require("../src/x");
 
-  x("body").html(`
+  expect(xAct(`
     << let thing = "thingymabobber" >>
     << thing >>
     << thing = "newvalue" >>
@@ -47,20 +41,14 @@ test("can set existing variables", () => {
     << "thing that happens to have a = in the middle" >>
     << "other thing with \\" = and escape character" >>
     << "other thing with ' = and different quote" >>
-  `);
-  xAct("body");
-  expect(x("body").html()).toMatchSnapshot();
+  `)).toMatchSnapshot();
 });
 
 test("can get data set in model", () => {
   require("../src/x");
 
-  x("body").html(`
+  expect(xAct(`
     << this.thing >>
     << this.thing >>
-  `);
-  xAct("body", {
-    "thing": "thingymabobber"
-  });
-  expect(x("body").html()).toMatchSnapshot();
+  `, { "thing": "thingymabobber" })).toMatchSnapshot();
 });
