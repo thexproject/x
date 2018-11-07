@@ -1,6 +1,5 @@
 (() => {
   // x - Lightweight DOM manipulation library
-
   class xObject {
     constructor(query) {
       if (query instanceof Node) {
@@ -189,7 +188,6 @@
   };
 
   // xAct - Simple JavaScript templating library
-
   window.xAct = (html, data) => {
     const templateRegex = /<<([^>>]+)?>>/g;
     const blockRegex = /(^( )*(if|for|else|switch|case|break|var|let|const|{|}))(.*)?/g;
@@ -241,7 +239,6 @@
   }
 
   // xJax - A wrapper around fetch to make it slightly simpler
-
   window.xJax = async (uri, queries) => {
     let queryString = "";
     if (queries !== undefined) {
