@@ -5,7 +5,7 @@
 [![Cirrus CI](https://api.cirrus-ci.com/github/thexproject/x.svg?branch=master)](https://cirrus-ci.com/github/thexproject/x)
 [![Code Quality](https://img.shields.io/codacy/grade/a445cefdb15847aca2a393d1ccb72000/master.svg?style=flat)](https://www.codacy.com/app/thexproject/x?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thexproject/x&amp;utm_campaign=Badge_Grade)
 [![Documentation](https://img.shields.io/badge/documentation-here-blue.svg?style=flat)](https://github.com/thexproject/x/wiki)
-[![Gitter](https://img.shields.io/gitter/room/thexproject/Lobby.svg)](https://gitter.im/thexproject/Lobby)
+[![Gitter](https://img.shields.io/gitter/room/thexproject/Lobby.svg)](https://gitter.im/thexproject/Lobby) [![Greenkeeper badge](https://badges.greenkeeper.io/thexproject/x.svg)](https://greenkeeper.io/)
 
 *A simple DOM manipulation library that comes with a templating engine and an easy-to-use AJAX function.*
 
