@@ -1,6 +1,6 @@
 {
   "name": "x",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "A simple DOM manipulation library that comes with a templating engine and an easy-to-use AJAX function.",
   "main": "x.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "ajax"
   ],
   "author": "The X Project",
-  "license": "AGPL-3.0-or-later",
+  "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/thexproject/x/issues"
   },

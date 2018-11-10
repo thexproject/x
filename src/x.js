@@ -256,4 +256,14 @@
     let text = await response.text();
     return text;
   }
+  
+  window.xJax.post = async (uri, queries) => {
+    let response = await fetch(uri, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(queries)
+    });
+    let text = await response.text();
+    return text;
+  }
 })();

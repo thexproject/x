@@ -1,5 +1,16 @@
 # X Changelog
 
+## 2.1.0
+
+### xJax
+
+- Add POST request functionality with `xJax.post()`
+
+### Meta
+
+- Set up Greenkeeper
+- Update the version in `package.json`
+
 ## 2.0.0
 
 ### x
@@ -19,7 +30,7 @@
 
 ### Notes
 
-- It has come to my attention that according to the semantic versioning spec the current major should be 0 because the API will probably change a lot and x is still development. I don't want to break anything more besides that rule, so I won't decrement the major version. 
+- It has come to my attention that according to the semantic versioning spec the current major should be 0 because the API will probably change a lot and x is still development. I don't want to break anything more besides that rule, so I won't decrement the major version.
 - Also, this release is 2.x.x because of, well, semver :D
 
 ## 1.0.2
