@@ -31,6 +31,6 @@
     "gulp-rename": "^1.4.0",
     "gulp-uglify-es": "^1.0.4",
     "jest": "^23.6.0",
-    "jest-dom": "^2.1.0"
+    "jest-dom": "^3.0.0"
   }
 }
