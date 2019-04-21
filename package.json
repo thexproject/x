@@ -27,7 +27,7 @@
   "homepage": "https://github.com/thexproject/x#readme",
   "devDependencies": {
     "event-stream": "^4.0.1",
-    "gulp": "^4.0.0",
+    "gulp": "4.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-uglify-es": "^1.0.4",
     "jest": "^23.6.0",
