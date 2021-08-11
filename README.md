@@ -1,3 +1,5 @@
+> 🚩 **This project is archived!** 🚩
+
 # X
 
 [![jsDelivr](https://img.shields.io/badge/on-jsDelivr-brightgreen.svg?style=flat)](https://cdn.jsdelivr.net/gh/thexproject/x/dist/)
